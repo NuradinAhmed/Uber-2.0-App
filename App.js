@@ -1,13 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from "react-redux";
+
+
+// 1) Set up redux
 
 export default function App() {
   return (
+    //wrap around the whole app with the Provider from Redux - Makes the Redux store available to the connect() calls in the component hierarchy below
+        // Store: (JSX attribute) store: Store<any, AnyAction> : The single Redux store in your application
+        
+    <Provider store ={}>  
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Lets Build UBER!</Text>
       <StatusBar style="auto" />
     </View>
+    </Provider>
   );
 }
 
