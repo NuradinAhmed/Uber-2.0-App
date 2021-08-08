@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import { Provider } from "react-redux";
 import { store } from "./store";
 import HomeScreen from "./screens/HomeScreen";
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // 1) Set up redux
 
@@ -14,7 +14,10 @@ export default function App() {
 
         //now am going to import my store 
     <Provider store ={store}>  
-      <HomeScreen />
+      <SafeAreaProvider>
+        <HomeScreen />
+      </SafeAreaProvider>
+    
     </Provider>
   );
 }
