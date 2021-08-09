@@ -4,20 +4,44 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import HomeScreen from "./screens/HomeScreen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack'
+import MapScreen from './screens/MapScreen';
 
 // 1) Set up redux
 
 export default function App() {
+  const Stack = createStackNavigator();
+
   return (
     //wrap around the whole app with the Provider from Redux - Makes the Redux store available to the connect() calls in the component hierarchy below
         // Store: (JSX attribute) store: Store<any, AnyAction> : The single Redux store in your application
 
-        //now am going to import my store 
     <Provider store ={store}>  
-      <SafeAreaProvider>
-        <HomeScreen />
-      </SafeAreaProvider>
-    
+      <NavigationContainer>
+        <SafeAreaProvider>
+            <Stack.Navigator>
+                <Stack.Screen 
+                  name="HomeScreen"
+                  component={HomeScreen}
+                  options={{
+                    headerShown: false,   //here we have hid the home screen at the header. To show it set it. 
+                  }}
+                />
+                          
+                <Stack.Screen   //Screen: Is a Component used for specifying route configuration.
+                  name="MapScreen"
+                  component={MapScreen}
+                  options={{
+                    headerShown: false,
+                  }}
+                  
+                
+                />
+            </Stack.Navigator>
+        </SafeAreaProvider>
+      </NavigationContainer>
     </Provider>
   );
 }

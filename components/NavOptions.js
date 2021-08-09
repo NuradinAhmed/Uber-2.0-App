@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import tw from 'tailwind-react-native-classnames';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -32,6 +34,8 @@ const data = [
 
 
 const NavOptions = () => {
+    const navigation = useNavigation();  //1A: i will use this navigation props to navigate when i swipe the touchableOpacity to different screen
+
     return (
         <FlatList 
             data={data}
@@ -40,7 +44,12 @@ const NavOptions = () => {
 
             /* background bg and margin for separating it - cool tailwind sytel*/
             renderItem={({ item }) => (
-                <TouchableOpacity style = {tw `p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}>     
+                <TouchableOpacity 
+                    style = {tw `p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+                    //1A: Above for navigate screen using onPress rather than click on react: onPress: Called when the touch is released, but not if cancelled (e.g. by a scroll that steals the responder lock).
+                    onPress={() => navigation.navigate(item.screen)}
+                    
+                    >     
                     <View>
                     
                         {/* will create an image consisting of source that has an argument passed into it and that argument is an uri to the data.item 
@@ -53,6 +62,15 @@ const NavOptions = () => {
                         <Text style={tw`mt-2 text-lg font-semibold`}>  
                             {item.title}
                         </Text>
+
+                        <Icon
+                        //here is where navigation for the get ride and order arrow design exit as an icon a type of antdesign from reactnativeNavigation which will take you as swipe to the next page
+                            style={tw`p-2 bg-black rounded-full w-10 mt-4`}
+                            name="arrowright"
+                            color="white"
+                            type="antdesign"
+
+                        />
                     </View>
                 </TouchableOpacity>
             )}
