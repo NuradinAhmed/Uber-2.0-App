@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet, LogBox} from 'react-native';
 import { Provider } from "react-redux";
 import { store } from "./store";
 import HomeScreen from "./screens/HomeScreen";
@@ -12,6 +12,7 @@ import MapScreen from './screens/MapScreen';
 // 1) Set up redux
 
 export default function App() {
+  LogBox.ignoreLogs(['Remote debugger']); //this helps us remove the unessary remote logging notification
   const Stack = createStackNavigator();
 
   return (
