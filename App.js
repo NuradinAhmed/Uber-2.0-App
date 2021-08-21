@@ -12,7 +12,7 @@ import MapScreen from './screens/MapScreen';
 // 1) Set up redux
 
 export default function App() {
-  LogBox.ignoreLogs(['Remote debugger']); //this helps us remove the unessary remote logging notification
+ // LogBox.ignoreLogs(['Remote debugger']); //this helps us remove the unessary remote logging notification
   const Stack = createStackNavigator();
 
   return (
