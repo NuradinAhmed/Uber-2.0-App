@@ -7,16 +7,17 @@ import  { GooglePlacesAutocomplete } from 'react-native-google-places-autocomple
 import { GOOGLE_MAPS_APIKEY} from "@env";
 import { useDispatch } from "react-redux";
 import { setDestination, setOrigin} from "../slices/navSlice";
+import NavFavourites from '../components/NavFavourites';
 
 
 
 const HomeScreen = () => {    
     /*
     Dispatch and Action: 
-        Info: Dispatch is like a guy - we shoot the action into the dataLayer with the payload which has the information we want change or manipulate in the 
+        Info: Dispatch is like a gun - we shoot the action into the dataLayer with the payload which has the information we want change or manipulate in the 
                 dateLayer
     */
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); //this disaptch variable 
     return (
       
         <SafeAreaView style={tw`bg-white h-full`}>
@@ -48,6 +49,7 @@ const HomeScreen = () => {
                     onPress={(data, details = null) => {
                         // console.log(data);  //use this console to test out the data and detials of it in the local console.
                         // console.log(details);
+
                         //the way we push data out to the redux store is - we say dispacth and then pass in the action and in this case the action is setOrigin - blw exp.
                         dispatch(setOrigin({
                             location: details.geometry.location,
@@ -57,7 +59,7 @@ const HomeScreen = () => {
                         dispatch(setDestination(null))
                     }}
                     fetchDetails={true}
-                    returnKeyType={"search"}
+                    returnKeyType={"search"} //this brings up back the keybaord to search more 
                     enablePoweredByContainer={false} //this is the highlight that states the power by google - we settting it to false to hide it
                     minLength={2}
 
@@ -73,6 +75,8 @@ const HomeScreen = () => {
                 
                 />
                 <NavOptions />
+
+                <NavFavourites />
             </View>
         </SafeAreaView>
 

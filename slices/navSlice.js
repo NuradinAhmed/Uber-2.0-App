@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 /*
-    The three actions we're having is: when you input your current location(Origin) as jigjiga it will dispatch this action into that data layer and now its part of the data layer and we can pull it whenver we need it. 
+    The three actions we're having is: when you input your current location(Origin) as jigjiga it will dispatch 
+        this action into that data layer and now its part of the data layer and we can pull it whenver we need it. 
                         Same way for destination and travelinformation and all of this is inside of the reducer. 
         1: Set Origin: 
         2: Set Destination: 
@@ -22,7 +23,7 @@ export const navSlice = createSlice({ // createSlice: A function that accepts an
     initialState,   //The initial state to be returned by the slice reducer.
 
     reducers: {     // we create the action explained above in this reducer 
-        setOrigin: (state, action) => {                     //To set the origin we pass the state which is the current state and action and it return us a payload which get assgined back to the state.orgin.
+        setOrigin: (state, action) => {      //To set the origin we pass the state which is the current state and action and it return us a payload which get assgined back to the state.orgin.
             state.origin = action.payload;
         },
 

@@ -3,7 +3,8 @@ import { View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { useNavigation } from '@react-navigation/native';
-
+import { selectOrigin } from '../slices/navSlice';
+import { useSelector } from "react-redux";
 
 
 /* two pieces of information -
@@ -36,6 +37,10 @@ const data = [
 const NavOptions = () => {
     const navigation = useNavigation();  //1A: i will use this navigation props to navigate when i swipe the touchableOpacity to different screen
 
+    //3A import the origin selector to be used for the opacity disable if the origin is not chosen 
+    const origin = useSelector(selectOrigin); //useselector from selectOrigin 
+
+
     return (
         <FlatList 
             data={data}
@@ -48,9 +53,14 @@ const NavOptions = () => {
                     style = {tw `p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
                     //1A: Above for navigate screen using onPress rather than click on react: onPress: Called when the touch is released, but not if cancelled (e.g. by a scroll that steals the responder lock).
                     onPress={() => navigation.navigate(item.screen)}
+
+                    //if i want to hide the get ride options and gray it out so that the "where from" has to be chosen before you click the get ride the -
+                    //touchable opacity is disable if there is no origin and since we are accessing the origin need to import the origin selecter at 3A. 
+                    disabled={!origin}
                     
+                    //here we are styling up the view by using jsx ' if there is not origin then opacity-20 meaning gray it out the sytle.
                     >     
-                    <View>
+                    <View style={tw`${!origin && "opacity-20"}`}> 
                     
                         {/* will create an image consisting of source that has an argument passed into it and that argument is an uri to the data.item 
                             also will have text and icon from react native elemetns*/}
